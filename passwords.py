@@ -1,34 +1,30 @@
+def is_very_long(password):
+    return len(password) >= 12
 
 
-PASSWORD = input('input password: ')
+def has_digit(password):
+    return any(char.isdigit() for char in password)
 
 
-def is_very_long(PASSWORD):
-    return len(PASSWORD) >= 12
-
-
-def has_digit(PASSWORD):
-    return any(char.isdigit() for char in PASSWORD)
-
-
-def has_letters(PASSWORD):
-    return any(char.isalpha() for char in PASSWORD)  
+def has_letters(password):
+    return any(char.isalpha() for char in password)  
     
 
-def has_upper_letters(PASSWORD):
-    return any(char.isupper() for char in PASSWORD) 
+def has_upper_letters(password):
+    return any(char.isupper() for char in password) 
 
 
-def has_lower_letters(PASSWORD):
-    return any(char.islower() for char in PASSWORD) 
+def has_lower_letters(password):
+    return any(char.islower() for char in password) 
 
 
-def has_symbols(PASSWORD):
-    return any(not char.isalnum() for char in PASSWORD)
+def has_symbols(password):
+    return any(not char.isalnum() for char in password)
 
 
-def count_score(PASSWORD):
-    functions = [is_very_long,
+def count_score(password):
+    functions = [
+        is_very_long,
         has_digit,
         has_letters,
         has_upper_letters,
@@ -37,15 +33,16 @@ def count_score(PASSWORD):
     ]
     score = 0
     for function in functions:
-        if function(PASSWORD):
+        if function(password):
             score += 2
     print(f'надежность пароля {score}')        
     return score  
 
 
 def main():
-    count_score(PASSWORD)  
-
+    password = input('input password: ')
+    count_score(password)  
+    
 
 if __name__ == "__main__":
     main()
